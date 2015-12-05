@@ -19,6 +19,9 @@ classdef LcrNetEvents
         
         % Requests to enable/disable LightCrafter LEDs. 
         SET_LCR_LED_ENABLES = 'SET_LCR_LED_ENABLES'
+        
+        % Requests the current LightCrafter pattern rate.
+        GET_LCR_CURRENT_PATTERN_RATE = 'GET_LCR_CURRENT_PATTERN_RATE';
     end
     
 end

@@ -92,6 +92,8 @@ classdef LcrStageServer < StageServer
                         obj.onEventGetLcrLedEnables(client, value);
                     case LcrNetEvents.SET_LCR_LED_ENABLES
                         obj.onEventSetLcrLedEnables(client, value);
+                    case LcrNetEvents.GET_LCR_CURRENT_PATTERN_RATE
+                        obj.onEventGetLcrCurrentPatternRate(client, value);
                     otherwise
                         onEventReceived@StageServer(obj, src, data);
                 end
@@ -155,6 +157,11 @@ classdef LcrStageServer < StageServer
             
             obj.lightCrafter.setLedEnables(auto, red, green, blue);
             client.send(NetEvents.OK);
+        end
+        
+        function onEventGetLcrCurrentPatternRate(obj, client, value) %#ok<INUSD>
+            rate = obj.lightCrafter.currentPatternRate();
+            client.send(NetEvents.OK, rate);
         end
         
         function onEventGetCanvasSize(obj, client, value) %#ok<INUSD>

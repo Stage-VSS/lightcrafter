@@ -51,6 +51,12 @@ classdef LcrStageClient < StageClient
             obj.getResponse();
         end
         
+        % Gets the current LightCrafter pattern rate.
+        function r = getLcrCurrentPatternRate(obj)
+            obj.sendEvent(LcrNetEvents.GET_LCR_CURRENT_PATTERN_RATE);
+            r = obj.getResponse();
+        end
+        
     end
     
 end
